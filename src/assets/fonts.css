@@ -1,0 +1,37 @@
+
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/assets/fonts/Noto_Sans_JP/NotoSansJP-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/assets/fonts/Noto_Sans_JP/NotoSansJP-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/assets/fonts/Noto_Sans_JP/NotoSansJP-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/assets/fonts/Noto_Sans_JP/NotoSansJP-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/assets/fonts/Noto_Sans_JP/NotoSansJP-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url('/assets/fonts/Noto_Sans_JP/NotoSansJP-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}

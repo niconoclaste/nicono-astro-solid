@@ -1,0 +1,107 @@
+{
+  "common": {
+    "404": {
+      "en": "oops ! it seems that this page does not exists",
+      "ja": "あれ？このページは存在しないです"
+    },
+    "nopost": {
+      "en": "There is no content right now",
+      "ja": "このカテゴリーには記事がまだないです"
+    }
+  },
+  "home": {
+    "title": {
+      "en": "home",
+      "ja": "ホーム"
+    }
+  },
+  "about": {
+    "title": {
+      "en": "about",
+      "ja": "について"
+    },
+    "more": {
+      "en": "want to know more ?",
+      "ja": "もっと知りたい？"
+    }
+  },
+  "works": {
+    "title": {
+      "en": "works",
+      "ja": "ワークス"
+    },
+    "more": {
+      "en": "all my works",
+      "ja": "すべてのワークス"
+    },
+    "categories":{
+      "renewal":{
+        "en": "Site Renewal",
+        "ja": "サイト リニューアル"
+      },
+      "parts":{
+        "en": "Site Parts",
+        "ja": "サイト パーツ"
+      },
+      "full":{
+        "en": "Full Site",
+        "ja": "フール サイト"
+      },
+      "lp":{
+        "en": "Landing Page",
+        "ja": "ランディング ページ"
+      },
+      "mini":{
+        "en": "Mini Site",
+        "ja": "ミニ サイト"
+      },
+      "template":{
+        "en": "CMS Template",
+        "ja": "CMS テンプレート"
+      },
+      "maintenance":{
+        "en": "Site Maintenance",
+        "ja": "サイト運用・改善"
+      }
+    }
+  },
+  "codes": {
+    "title": {
+      "en": "codes",
+      "ja": "コード"
+    },
+    "more": {
+      "en": "all my codepens",
+      "ja": "すべてのコードペン"
+    }
+  },
+  "articles": {
+    "title": {
+      "en": "articles",
+      "ja": "ライティング"
+    },
+    "more": {
+      "en": "all the articles",
+      "ja": "すべての記事"
+    },
+    "readmore": {
+      "en": "read the rest of this article",
+      "ja": "この記事の続きを読む"
+    }
+  },
+  "contact": {
+    "title": {
+      "en": "contact",
+      "ja": "コンタクト"
+    },
+    "email": {
+      "en": "email",
+      "ja": "メール"
+    },
+    "more": {
+      "en": "",
+      "ja": ""
+    }
+  }
+
+}

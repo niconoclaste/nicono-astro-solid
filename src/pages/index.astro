@@ -1,0 +1,71 @@
+---
+// Layout Import
+import Layout from '@layouts/Layout.astro';
+
+// Components Import
+import { Header } from '@components/Header';
+// import Footer from '@components/svelte/Footer.svelte';
+
+import { Translate } from '@components/Translate';
+
+import Hero from '@components/Hero.astro';
+// import About from '@components/svelte/top/About.svelte';
+// import Works from '@components/svelte/top/Works.svelte';
+// import Codes from '@components/svelte/top/Codes.svelte';
+// import Articles from '@components/svelte/top/Articles.svelte';
+
+const worksData = await fetch('http://niconoclaste.jp/lib/works/');
+const works = await worksData.json();
+
+const articles = await Astro.glob('./articles/*.md');
+
+const current = 'home';
+const layout = 'home';
+
+const titleEn = '';
+const titleJa = '';
+const description = '';
+const keywords = '';
+
+
+import translation from '@utils/translation.json';
+
+---
+<Layout titleEn={titleEn} titleJa={titleJa} description={description} keywords={keywords} >
+
+
+	<section class="l-hero">
+		<Hero />
+	</section>
+	
+	<main class="g-main">
+	
+		<Header client:only="solid" current={current} layout={layout}  />
+		<!-- <Header client:only="solid" /> -->
+	
+		<article class="l-article" id="about">
+			<header class="m-header">
+				<h2 class="title"><Translate client:only="solid" en={translation.about.title.en} ja={translation.about.title.ja}/></h2>
+			</header>
+			<!-- <About client:only /> -->
+		</article>
+
+		<article class="l-article" id="works">
+			<header class="m-header">
+				<h2 class="title"><Translate client:only="solid" en={translation.works.title.en} ja={translation.works.title.ja}/></h2>
+			</header>
+			<!-- <Works client:only works={works} /> -->
+		</article>
+
+		<article class="l-article" id="codes">
+			<!-- <Codes client:only /> -->
+		</article>
+
+		<article class="l-article" id="articles">
+			<!-- <Articles client:only articles={articles} /> -->
+		</article>
+
+	</main>
+
+	<!-- <Footer client:only /> -->
+</Layout>

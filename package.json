@@ -1,0 +1,21 @@
+{
+	"name": "astro-svelte",
+	"version": "0.0.1",
+	"description": "",
+	"scripts": {
+		"dev": "astro dev --host --open",
+		"start": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"astro": "^1.4.4"
+	},
+	"dependencies": {
+		"@astrojs/solid-js": "^1.1.0",
+		"solid-js": "^1.4.3"
+	}
+}

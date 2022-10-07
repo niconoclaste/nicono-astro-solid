@@ -1,0 +1,66 @@
+---
+import '@assets/styles.css';
+const { titleEn, titleJa,  description, keywords} = Astro.props;
+let metaTitle = 'NicoNoClaste : Web developer / ウェブデベロッパー';
+
+let language = 'en';
+if(typeof window !== 'undefined' && window !== null){
+	const urlSearchParams = new URLSearchParams(window.location.search);
+	const params = Object.fromEntries(urlSearchParams.entries());
+	if(params.lang){
+		language = params.lang;
+	}else{
+		const localLang = window.localStorage.getItem('lang');
+		if(localLang){
+			language = localLang;
+		}else{
+			language = window.navigator.language;
+		}
+	}
+	if(language !== 'ja'){
+		language = 'en';
+	}
+	if(language == 'ja'){
+		// document.documentElement.setAttribute('lang', language);
+		// window.localStorage.setItem('lang', 'ja');
+		// const titleJaMeta = document.head.querySelector('meta[name="jaTitle"]') as HTMLMetaElement;
+		// const titleJa = titleJaMeta.content
+		// document.title = titleJa;
+	}
+}
+
+
+let metaTitleJa, metaTitleEn = metaTitle;
+
+if(titleEn !== ''){
+	metaTitleEn = titleEn + ' | ' + metaTitle;
+}
+if(titleJa !== ''){
+	metaTitleJa = titleJa + ' | ' + metaTitle;
+}
+
+metaTitle = metaTitleEn;
+if(language == 'ja'){
+	metaTitle = metaTitleJa;
+}
+
+
+
+---
+<!DOCTYPE html>
+<html lang={language}>
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="/favicon.png" />
+	<link rel="apple-touch-icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{metaTitle}</title>
+	<meta name="enTitle" content={metaTitleEn} />
+	<meta name="jaTitle" content={metaTitleJa} />
+	<meta name="description" content={description} />
+	<meta name="keywords" content={keywords} />
+</head>
+<body id="top">
+<slot />
+</body>
+</html>
