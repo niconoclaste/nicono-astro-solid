@@ -4,12 +4,12 @@ import Layout from '@layouts/Layout.astro';
 
 // Components Import
 import { Header } from '@components/Header';
-// import Footer from '@components/svelte/Footer.svelte';
+import Footer from '@components/Footer.astro';
 
 import { Translate } from '@components/Translate';
 
 import Hero from '@components/Hero.astro';
-// import About from '@components/svelte/top/About.svelte';
+import { TopAbout } from '@components/top/TopAbout';
 // import Works from '@components/svelte/top/Works.svelte';
 // import Codes from '@components/svelte/top/Codes.svelte';
 // import Articles from '@components/svelte/top/Articles.svelte';
@@ -22,17 +22,14 @@ const articles = await Astro.glob('./articles/*.md');
 const current = 'home';
 const layout = 'home';
 
-const titleEn = '';
-const titleJa = '';
+const titleEn = 'top';
+const titleJa = 'トップ';
 const description = '';
 const keywords = '';
 
-
 import translation from '@utils/translation.json';
-
 ---
 <Layout titleEn={titleEn} titleJa={titleJa} description={description} keywords={keywords} >
-
 
 	<section class="l-hero">
 		<Hero />
@@ -41,31 +38,42 @@ import translation from '@utils/translation.json';
 	<main class="g-main">
 	
 		<Header client:only="solid" current={current} layout={layout}  />
-		<!-- <Header client:only="solid" /> -->
-	
+
 		<article class="l-article" id="about">
 			<header class="m-header">
-				<h2 class="title"><Translate client:only="solid" en={translation.about.title.en} ja={translation.about.title.ja}/></h2>
+				<h2 class="title"><Translate client:only="solid" en={translation.about.title.en} ja={translation.about.title.ja} /></h2>
 			</header>
-			<!-- <About client:only /> -->
+			
+			<TopAbout client:only="solid" />
+
+			<footer class="m-footer">
+				<p><a href="/about"><strong><Translate client:only="solid" en={translation.about.more.en} ja={translation.about.more.ja} /></strong></a></p>
+			</footer>
+
 		</article>
 
 		<article class="l-article" id="works">
 			<header class="m-header">
-				<h2 class="title"><Translate client:only="solid" en={translation.works.title.en} ja={translation.works.title.ja}/></h2>
+				<h2 class="title"><Translate client:only="solid" en={translation.works.title.en} ja={translation.works.title.ja} /></h2>
 			</header>
 			<!-- <Works client:only works={works} /> -->
 		</article>
 
 		<article class="l-article" id="codes">
+			<header class="m-header">
+				<h2 class="title"><Translate client:only="solid" en={translation.codes.title.en} ja={translation.codes.title.ja} /></h2>
+			</header>
 			<!-- <Codes client:only /> -->
 		</article>
 
 		<article class="l-article" id="articles">
+			<header class="m-header">
+				<h2 class="title"><Translate client:only="solid" en={translation.articles.title.en} ja={translation.articles.title.ja} /></h2>
+			</header>
 			<!-- <Articles client:only articles={articles} /> -->
 		</article>
 
 	</main>
 
-	<!-- <Footer client:only /> -->
+	<Footer />
 </Layout>

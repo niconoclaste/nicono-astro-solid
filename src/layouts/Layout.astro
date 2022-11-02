@@ -21,11 +21,11 @@ if(typeof window !== 'undefined' && window !== null){
 		language = 'en';
 	}
 	if(language == 'ja'){
-		// document.documentElement.setAttribute('lang', language);
-		// window.localStorage.setItem('lang', 'ja');
-		// const titleJaMeta = document.head.querySelector('meta[name="jaTitle"]') as HTMLMetaElement;
-		// const titleJa = titleJaMeta.content
-		// document.title = titleJa;
+		document.documentElement.setAttribute('lang', language);
+		window.localStorage.setItem('lang', 'ja');
+		const titleJaMeta = document.head.querySelector('meta[name="jaTitle"]') as HTMLMetaElement;
+		const titleJa = titleJaMeta.content
+		document.title = titleJa;
 	}
 }
 
@@ -40,15 +40,13 @@ if(titleJa !== ''){
 }
 
 metaTitle = metaTitleEn;
-if(language == 'ja'){
-	metaTitle = metaTitleJa;
-}
-
-
+// if(language == 'ja'){
+// 	metaTitle = metaTitleJa;
+// }
 
 ---
 <!DOCTYPE html>
-<html lang={language}>
+<html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<link rel="icon" href="/favicon.png" />
