@@ -2,7 +2,7 @@ import { Component } from "solid-js";
 import { store } from '@utils/store';
 
 export const TopAbout: Component = () => {
-	return <section className="l-section">
+	return <section class="l-section">
 		{ store.lang === 'en' && <>
 			<p><strong>Nicolas</strong> (NicoNoClaste)</p>
 			<p>born in <strong>Paris</strong> living in <strong>Tokyo</strong></p>

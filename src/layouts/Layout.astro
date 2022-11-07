@@ -3,32 +3,6 @@ import '@assets/styles.css';
 const { titleEn, titleJa,  description, keywords} = Astro.props;
 let metaTitle = 'NicoNoClaste : Web developer / ウェブデベロッパー';
 
-let language = 'en';
-if(typeof window !== 'undefined' && window !== null){
-	const urlSearchParams = new URLSearchParams(window.location.search);
-	const params = Object.fromEntries(urlSearchParams.entries());
-	if(params.lang){
-		language = params.lang;
-	}else{
-		const localLang = window.localStorage.getItem('lang');
-		if(localLang){
-			language = localLang;
-		}else{
-			language = window.navigator.language;
-		}
-	}
-	if(language !== 'ja'){
-		language = 'en';
-	}
-	if(language == 'ja'){
-		document.documentElement.setAttribute('lang', language);
-		window.localStorage.setItem('lang', 'ja');
-		const titleJaMeta = document.head.querySelector('meta[name="jaTitle"]') as HTMLMetaElement;
-		const titleJa = titleJaMeta.content
-		document.title = titleJa;
-	}
-}
-
 
 let metaTitleJa, metaTitleEn = metaTitle;
 

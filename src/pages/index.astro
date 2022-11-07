@@ -10,12 +10,25 @@ import { Translate } from '@components/Translate';
 
 import Hero from '@components/Hero.astro';
 import { TopAbout } from '@components/top/TopAbout';
-// import Works from '@components/svelte/top/Works.svelte';
+import { TopWorks } from '@components/top/TopWorks';
+import { Snippet } from '@components/top/Snippet';
+
 // import Codes from '@components/svelte/top/Codes.svelte';
 // import Articles from '@components/svelte/top/Articles.svelte';
+import type { WORK } from '@utils/types';
+
+import translation from '@utils/translation.json';
+import { settings } from '@utils/settings.js';
 
 const worksData = await fetch('http://niconoclaste.jp/lib/works/');
 const works = await worksData.json();
+const maxWorks = settings.maxWorks;
+let topWorks = works.filter((work: WORK) => !work.hidden);
+topWorks = topWorks.filter((work: WORK) => work.top).sort((a: WORK, b: WORK) => new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : 0).slice(0, maxWorks)
+
+
+
+
 
 const articles = await Astro.glob('./articles/*.md');
 
@@ -27,7 +40,8 @@ const titleJa = 'トップ';
 const description = '';
 const keywords = '';
 
-import translation from '@utils/translation.json';
+
+
 ---
 <Layout titleEn={titleEn} titleJa={titleJa} description={description} keywords={keywords} >
 
@@ -37,7 +51,7 @@ import translation from '@utils/translation.json';
 	
 	<main class="g-main">
 	
-		<Header client:only="solid" current={current} layout={layout}  />
+		<Header client:only="solid" current={current} layout={layout} translation={translation} />
 
 		<article class="l-article" id="about">
 			<header class="m-header">
@@ -49,14 +63,22 @@ import translation from '@utils/translation.json';
 			<footer class="m-footer">
 				<p><a href="/about"><strong><Translate client:only="solid" en={translation.about.more.en} ja={translation.about.more.ja} /></strong></a></p>
 			</footer>
-
 		</article>
 
 		<article class="l-article" id="works">
 			<header class="m-header">
 				<h2 class="title"><Translate client:only="solid" en={translation.works.title.en} ja={translation.works.title.ja} /></h2>
 			</header>
-			<!-- <Works client:only works={works} /> -->
+
+			<section class="l-section">
+				<div class="m-bloc" id="top-works">
+					<TopWorks client:only="solid" works={topWorks}/>
+				</div>
+			</section>
+
+			<footer class="m-footer">
+				<p><a href="/works"><strong><Translate client:only="solid" en={translation.works.more.en} ja={translation.works.more.ja} /></strong></a></p>
+			</footer>
 		</article>
 
 		<article class="l-article" id="codes">
@@ -64,6 +86,24 @@ import translation from '@utils/translation.json';
 				<h2 class="title"><Translate client:only="solid" en={translation.codes.title.en} ja={translation.codes.title.ja} /></h2>
 			</header>
 			<!-- <Codes client:only /> -->
+
+			<section class="l-section">
+
+				<div class="m-bloc">
+					<Snippet client:only="solid" id="NWgvaOa" title="CSS only responsive slider" title_ja="CSSのみ レスポンシブ カルーセル" />
+				</div>
+				<div class="m-bloc">
+					<Snippet client:only="solid" id="ExbKxPx" title="Responsive svg progress circle" title_ja="レスポンシブSVG進行サークル" />
+				</div>
+				<div class="m-bloc">
+					<Snippet client:only="solid" id="poadjOL" title="STAR WARS opening" title_ja="スターウォーズ オープニング" />
+				</div>
+			</section>
+
+			<footer class="m-footer">
+				<p><a href="https://codepen.io/niconoclaste" target="_blank" rel="noopener"><strong><Translate client:only="solid" en={translation.codes.more.en} ja={translation.codes.more.ja} /></strong></a></p>
+			</footer>
+
 		</article>
 
 		<article class="l-article" id="articles">

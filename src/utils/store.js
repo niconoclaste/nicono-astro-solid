@@ -1,2 +1,6 @@
 import { createStore } from "solid-js/store";
-export const [store, setStore] = createStore({lang:'en'});
+
+export const [store, setStore] = createStore({
+	lang: 'en',
+	naviIsopened: false
+});

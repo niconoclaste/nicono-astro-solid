@@ -3,6 +3,6 @@ export const settings = {
   "maxWorks": 12,
   "maxArticles": 4,
   "email": "test@test.com",
-	"showWorks":true,
-	"showArticles":true
+	"showWorks": true,
+	"showArticles": true
 };
