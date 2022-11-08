@@ -1,0 +1,84 @@
+---
+import '@assets/styles.css';
+
+// Components Import
+import { Header } from '@components/Header';
+import { Translate } from '@components/Translate';
+
+import translation from '@utils/translation.json';
+import { settings } from '@utils/settings.js';
+
+const { titleEn, titleJa,  description, keywords, pageLayout, category, current} = Astro.props.frontmatter || Astro.props;
+let metaTitle: string = settings.baseTitle;
+let metaTitleJa :string, metaTitleEn: string = metaTitle;
+if(titleEn !== ''){
+	metaTitleEn = titleEn + ' | ' + metaTitle;
+}
+if(titleJa !== ''){
+	metaTitleJa = titleJa + ' | ' + metaTitle;
+}
+metaTitle = metaTitleEn;
+
+let insideTitleEn = pageLayout === 'single' ? titleEn : translation[category].title.en;
+let insideTitleJa = pageLayout === 'single' ? titleJa : translation[category].title.ja;
+
+// {visible && <p>Show me!</p>}
+
+// {visible ? <p>Show me!</p> : <p>Else show me!</p>}
+
+
+
+
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="/favicon.png" />
+	<link rel="apple-touch-icon" href="/favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{metaTitle}</title>
+	<meta name="enTitle" content={metaTitleEn} />
+	<meta name="jaTitle" content={metaTitleJa} />
+	<meta name="description" content={description} />
+	<meta name="keywords" content={keywords} />
+</head>
+<body id="top">
+
+	<main class="g-main">
+
+		<Header client:only="solid" current={current} layout={pageLayout} translation={translation} />
+
+		<article class="l-article" id={category}>
+			<header class="m-header">
+				<h1 class="title">
+					<Translate client:only="solid" en={insideTitleEn} ja={insideTitleJa} />
+				</h1>
+			</header>
+	
+			<section class="l-section">
+				<div class="m-bloc">
+					<!-- {#if layout === 'single'}
+					<h3 class="title">{@html $language === 'en' ? post_excerpt : post_excerpt_ja}</h3>
+						
+					<p class="m-article-date">
+						{new Intl.DateTimeFormat('ja-JP', {dateStyle: dateSyle}).format(new Date(post_date))}
+						<small>(modified : {new Intl.DateTimeFormat('ja-JP', {dateStyle: dateSyle}).format(new Date(post_lastModified))})</small>
+					</p>
+					{/if} -->
+					<slot />
+				</div>
+			</section>
+	
+			<footer class="m-footer">
+				<!-- {#if layout === 'single'}
+				<p><a href="/{category}"><strong>{translation[category].more[$language]}</strong></a></p>
+				{:else}
+				<p><a href="/#{category}"><strong>{#if $language == 'en'}Site top{:else}トップページ{/if}</strong></a></p>
+				{/if} -->
+			</footer>
+		</article>
+	</main>
+
+</body>
+</html>

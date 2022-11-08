@@ -1,0 +1,27 @@
+---
+slug: "intro-2-webdev"
+titleEn: "Intoduction to web development"
+titleJa: "ウェブデベロップメント入門"
+date: 2022-01-17
+excerpt: "An extremely simplified explanation to web development. <br>What is the work of a web developer ? How the browser works ? What language do I need to learn ?"
+excerpt_ja: "非常に分かりやすいウェブデベロップメントの説明"
+tags: [HTML, CSS]
+cat: "web"
+cat_ja: "ウェブ"
+series: "world wide web"
+series_nb: 1
+thumb: "http://www.niconoclaste.jp/img/code.jpg"
+top: true
+#hidden
+category: "articles"
+current: "articles"
+# layout: "@layouts/Layout-inside.astro"
+pageLayout: "single"
+---
+
+import { SwitchLang } from "@components/SwitchLang"
+
+<SwitchLang client:only="solid">
+	<p slot="en">aaaa<br/>aaaaa</p>
+	<p slot="ja">あああああ<br/>あああああ</p>
+</SwitchLang>

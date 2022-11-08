@@ -1,22 +1,17 @@
 ---
 import '@assets/styles.css';
-const { titleEn, titleJa,  description, keywords} = Astro.props;
-let metaTitle = 'NicoNoClaste : Web developer / ウェブデベロッパー';
+const { titleEn, titleJa, description, keywords} = Astro.props.frontmatter || Astro.props;
+import { settings } from '@utils/settings.js';
 
-
-let metaTitleJa, metaTitleEn = metaTitle;
-
+let metaTitle: string = settings.baseTitle;
+let metaTitleJa :string, metaTitleEn: string = metaTitle;
 if(titleEn !== ''){
 	metaTitleEn = titleEn + ' | ' + metaTitle;
 }
 if(titleJa !== ''){
 	metaTitleJa = titleJa + ' | ' + metaTitle;
 }
-
 metaTitle = metaTitleEn;
-// if(language == 'ja'){
-// 	metaTitle = metaTitleJa;
-// }
 
 ---
 <!DOCTYPE html>

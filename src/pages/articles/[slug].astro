@@ -1,0 +1,25 @@
+---
+// Layout Import
+import LayoutSingle from '@layouts/LayoutSingle.astro';
+
+// Import MDX file contents
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../posts/**/*.mdx')
+
+  return posts.map(post => ({
+    params: { 
+      slug: post.frontmatter.slug
+    },
+    props: {
+      post
+    },
+  }))
+}
+const { Content } = Astro.props.post;
+
+---
+<LayoutSingle titleEn={Astro.props.post.frontmatter.titleEn} titleJa={Astro.props.post.frontmatter.titleJa} description="" keywords="" category="articles" pageLayout="single" current="articles">
+
+  <Content/>
+
+</LayoutSingle>

@@ -11,9 +11,9 @@ import { Translate } from '@components/Translate';
 import Hero from '@components/Hero.astro';
 import { TopAbout } from '@components/top/TopAbout';
 import { TopWorks } from '@components/top/TopWorks';
+import { TopWorks2 } from '@components/top/TopWorks2';
 import { Snippet } from '@components/top/Snippet';
 
-// import Codes from '@components/svelte/top/Codes.svelte';
 // import Articles from '@components/svelte/top/Articles.svelte';
 import type { WORK } from '@utils/types';
 
@@ -26,21 +26,15 @@ const maxWorks = settings.maxWorks;
 let topWorks = works.filter((work: WORK) => !work.hidden);
 topWorks = topWorks.filter((work: WORK) => work.top).sort((a: WORK, b: WORK) => new Date(a.date).getTime() > new Date(b.date).getTime() ? -1 : new Date(a.date).getTime() < new Date(b.date).getTime() ? 1 : 0).slice(0, maxWorks)
 
+const Articles = await Astro.glob('../posts/*.mdx');
 
-
-
-
-const articles = await Astro.glob('./articles/*.md');
 
 const current = 'home';
 const layout = 'home';
-
 const titleEn = 'top';
 const titleJa = 'トップ';
 const description = '';
 const keywords = '';
-
-
 
 ---
 <Layout titleEn={titleEn} titleJa={titleJa} description={description} keywords={keywords} >
@@ -72,7 +66,8 @@ const keywords = '';
 
 			<section class="l-section">
 				<div class="m-bloc" id="top-works">
-					<TopWorks client:only="solid" works={topWorks}/>
+					<!-- <TopWorks client:only="solid" works={topWorks}/> -->
+					<TopWorks2 client:load />
 				</div>
 			</section>
 
@@ -110,6 +105,23 @@ const keywords = '';
 			<header class="m-header">
 				<h2 class="title"><Translate client:only="solid" en={translation.articles.title.en} ja={translation.articles.title.ja} /></h2>
 			</header>
+			<section class="l-section">
+
+				
+      {Articles.map(({ default: Content }, i) => { return (
+				<div class="m-bloc">
+					<Content />
+				</div>
+      )})}
+
+
+
+			{Articles.map(article => (
+				<div class="m-bloc"><Translate client:only="solid" en={article.frontmatter.titleEn} ja={article.frontmatter.titleJa} /></div>
+			))}
+
+			</section>
+
 			<!-- <Articles client:only articles={articles} /> -->
 		</article>
 
